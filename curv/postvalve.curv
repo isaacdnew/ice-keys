@@ -1,0 +1,13 @@
+let
+	
+	
+	block = box (2, 2, 2);
+	
+	pitch = 96;
+	tube_length = 200; // TODO: adjust length based on pitch
+	
+	tube{d_inner, d_outer, length} = difference[cylinder.mitred{d: d_outer, h: length}, cylinder.mitred{d: d_inner, h: inf}];
+	pipe = tube{d_inner: 9, d_outer: 10, length: tube_length} >> move [0, 0, tube_length/2] >> colour blue;
+in
+	
+	union (block, pipe)
