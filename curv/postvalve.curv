@@ -1,13 +1,14 @@
 let
+	include file "general-params.curv";
 	
-	
-	block = box (2, 2, 2);
-	
-	pitch = 96;
-	tube_length = 200; // TODO: adjust length based on pitch
-	
-	tube{d_inner, d_outer, length} = difference[cylinder.mitred{d: d_outer, h: length}, cylinder.mitred{d: d_inner, h: inf}];
-	pipe = tube{d_inner: 9, d_outer: 10, length: tube_length} >> move [0, 0, tube_length/2] >> colour blue;
+	block = box {xmin:-5, ymin:-5, zmin:-5, xmax:5, ymax:5, zmax:0} >> colour black_plastic;
 in
+	union (block, for (n in 0..key_count) pipe n)
+where (
+	pipe n = tube{d_out: 10, d_in: 9, length: tube_length n} >> move [0, n*channel_width, (tube_length n)/2] >> colour acrylic;
 	
-	union (block, pipe)
+	tube {d_out, d_in, length} = difference[cylinder{d: d_out, h: length}, cylinder{d: d_in, h: inf}];
+	
+	tube_length n = length_of (low_pitch + n);
+	length_of pitch = 1732 - 34*pitch + 0.169*pitch^2;
+)
