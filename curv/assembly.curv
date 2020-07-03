@@ -1,8 +1,8 @@
 // curv -l -O bg="sRGB.grey 0.1" -O ray_max_iter=400 -O ray_max_depth=1600 -O aa=3 -O lazy curv/postvalve.curv
 let
-
+	include file "pipes.curv"
 in
-	file "pipes.curv"
+	union [for (n in 0..key_count - 1) pipe n]
 where (
 	
 )

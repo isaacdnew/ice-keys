@@ -1,13 +1,9 @@
-let
+{
 	include file "general-params.curv";
-		
-	//mouth n = ?
-	pipe n = tube{od: pipe_size.od, id: pipe_size.id, length: pipe_length n} >> move [0, n*channel_width, (pipe_length n)/2] >> colour acrylic;
-in
-	union [for (n in 0..key_count - 1) pipe n]
-where (
-	pipe_length n = length_of (lo_pitch + n);
-	length_of pitch = 1732 + -34*pitch + 0.169*pitch^2;
 	
 	tube {od, id, length} = difference[cylinder{d: od, h: length}, cylinder{d: id, h: inf}];
-)
+	length_of pitch = 1732 + -34*pitch + 0.169*pitch^2;
+	pipe_length n = length_of (lo_pitch + n);
+	
+	pipe n = tube{od: pipe_size.od, id: pipe_size.id, length: pipe_length n} >> move [0, n*channel_width, (pipe_length n)/2] >> colour acrylic;
+}
