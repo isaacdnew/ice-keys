@@ -1,14 +1,16 @@
+// curv -l -O bg="sRGB.grey 0.1" -O ray_max_iter=400 -O ray_max_depth=1600 -O aa=3 -O lazy curv/postvalve.curv
 let
 	include file "general-params.curv";
 	
 	block = box {xmin:-5, ymin:-5, zmin:-5, xmax:5, ymax:5, zmax:0} >> colour black_plastic;
+	
+	//mouth n = ?
+	pipe n = tube{od: pipe_size.od, id: pipe_size.id, length: pipe_length n} >> move [0, n*channel_width, (pipe_length n)/2] >> colour acrylic;
 in
 	union (block, for (n in 0..key_count) pipe n)
 where (
-	pipe n = tube{d_out: 10, d_in: 9, length: tube_length n} >> move [0, n*channel_width, (tube_length n)/2] >> colour acrylic;
+	pipe_length n = length_of (lo_pitch + n);
+	length_of pitch = 1732 + -34*pitch + 0.169*pitch^2;
 	
-	tube {d_out, d_in, length} = difference[cylinder{d: d_out, h: length}, cylinder{d: d_in, h: inf}];
-	
-	tube_length n = length_of (low_pitch + n);
-	length_of pitch = 1732 - 34*pitch + 0.169*pitch^2;
+	tube {od, id, length} = difference[cylinder{d: od, h: length}, cylinder{d: id, h: inf}];
 )

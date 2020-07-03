@@ -1,21 +1,27 @@
 {
-	// Dimensions (mm)
+	inch = 25.4; // inch in terms of mm
+	
+	// Channel size
 	key_width = 10.5;
 	key_spacing = 0.5;
 	channel_width = key_width + key_spacing;
-	
-	// Specs
-	low_note = "F3";
-	key_count = 32;
+	pipe_size = {od: 0.375*inch, id: 0.25*inch};
 	
 	
-	// Colours:
+	// Range
+	hi_note = "C7";
+	lo_note = "F4";
+	hi_pitch = pitch hi_note;
+	lo_pitch = pitch lo_note;
+	key_count = if (hi_pitch > lo_pitch) hi_pitch - lo_pitch else error "hi_pitch <= lo_pitch!";
+	pitch(name :: is_string) = pitch_lut."${name[0]}" + 12*(encode name[count name - 1] - 47) + (if (name[1] == "#") 1 else (if (name[1] == "b") -1 else 0));
+	pitch_lut = {"C":  0, "D":  2, "E":  4, "F":  5, "G":  7, "A":  9, "B": 11,};
+	
+	
+	// Colours
 	acrylic = sRGB.grey 0.8;
 	black_plastic = sRGB.grey 0.25;
 	
 	
-	// Functions:
-	low_pitch = name2pitch low_note;
-	name2pitch(name :: is_string) = name2pitch_lut."${name[0]}" + 12*(encode name[count name - 1] - 47) + (if (name[1] == "#") 1 else (if (name[1] == "b") -1 else 0));
-	name2pitch_lut = {"C":  0, "D":  2, "E":  4, "F":  5, "G":  7, "A":  9, "B": 11,};
+	
 }
