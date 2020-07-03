@@ -1,7 +1,7 @@
 {
 	inch = 25.4; // inch in terms of mm
 	
-	// Channel size
+	// Channels and Pipes
 	key_width = 10.5;
 	key_spacing = 0.5;
 	channel_width = key_width + key_spacing;
@@ -21,7 +21,4 @@
 	// Colours
 	acrylic = sRGB.grey 0.8;
 	black_plastic = sRGB.grey 0.25;
-	
-	
-	
 }
