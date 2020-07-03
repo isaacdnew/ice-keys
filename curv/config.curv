@@ -1,0 +1,7 @@
+{
+	key_width = 10.5;
+	key_spacing = 0.5;
+	lo_note = "F4";
+	hi_note = "C7";
+	
+}

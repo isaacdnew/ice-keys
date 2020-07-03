@@ -1,21 +1,17 @@
 {
-	inch = 25.4; // inch in terms of mm
+	include file "config.curv";
+	include file "note-utils.curv";
+	inch = 25.4; // mm
 	
 	// Channels and Pipes
-	key_width = 10.5;
-	key_spacing = 0.5;
 	channel_width = key_width + key_spacing;
 	pipe_size = {od: 0.375*inch, id: 0.25*inch};
 	
 	
 	// Range
-	hi_note = "C7";
-	lo_note = "F4";
-	hi_pitch = pitch hi_note;
 	lo_pitch = pitch lo_note;
-	key_count = if (hi_pitch >= lo_pitch) hi_pitch - lo_pitch + 1 else error "hi_pitch < lo_pitch!";
-	pitch(name :: is_string) = pitch_lut."${name[0]}" + 12*(encode name[count name - 1] - 47) + (if (name[1] == "#") 1 else (if (name[1] == "b") -1 else 0));
-	pitch_lut = {"C":  0, "D":  2, "E":  4, "F":  5, "G":  7, "A":  9, "B": 11,};
+	key_count = note_count [lo_note, hi_note];
+	
 	
 	
 	// Colours
