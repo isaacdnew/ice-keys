@@ -1,11 +1,9 @@
 {
 	include file "config.curv";
 	include file "note-utils.curv";
-	inch = 25.4; // mm
 	
 	// Channels and Pipes
 	channel_width = key_width + key_spacing;
-	pipe_size = {od: 0.375*inch, id: 0.25*inch};
 	
 	
 	// Range
