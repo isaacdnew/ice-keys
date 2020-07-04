@@ -2,8 +2,8 @@
 	include file "general-params.curv";
 	
 	tube {od, id, length} = difference[cylinder{d: od, h: length}, cylinder{d: id, h: inf}];
-	length_of pitch = 1732 + -34*pitch + 0.169*pitch^2;
-	pipe_length n = length_of (pitch lo_note + n);
+	pitch_to_length pitch = 1732 + -34*pitch + 0.169*pitch^2;
+	pipe_length n = pitch_to_length (pitch lo_note + n);
 	
-	pipe n = tube{od: pipe_size.od, id: pipe_size.id, length: pipe_length n} >> move [0, n*channel_width, (pipe_length n)/2] >> colour acrylic;
+	pipe n = tube{od: pipe_size.od, id: pipe_size.id, length: pipe_length n} >> move [n*channel_width, 0, (pipe_length n)/2] >> colour acrylic;
 }
