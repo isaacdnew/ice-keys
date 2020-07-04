@@ -1,7 +1,9 @@
 {
+	inch = 25.4; // mm
+	
 	key_width = 10.5;
 	key_spacing = 0.5;
 	lo_note = "F4";
 	hi_note = "C7";
-	
+	pipe_size = {od: 0.375*inch, id: 0.25*inch};
 }
